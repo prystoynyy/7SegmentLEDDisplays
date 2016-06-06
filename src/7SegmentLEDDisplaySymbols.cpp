@@ -1,7 +1,7 @@
 #include "7SegmentLEDDisplaySymbols.h"
 
-#define LOW 0;
-#define HIGT 1;
+int LOW = 0;
+int HIGH = 1;
 
 //looks terrible, but I didn't find a way to copy Arrays or merge them from parts
 //N is for numbers and NxP is a number with a decimal point behind
@@ -96,15 +96,15 @@ int* LEDSymbols::Get(char* symbol){
         int* result;
         bool resultOp = Symbols.get(symbol, result);
         if(!resultOp){
-          result BLANK;
+          return BLANK;
         }
         return result;
 }
 
-int* LEDSymbols::getArray(int data){
+/*int* LEDSymbols::getArray(int data[]){
         int* result;
         for(int i= 0; i< data.lenght; i++) {
                 result[i] = data[i];
         }
         return result;
-}
+}*/

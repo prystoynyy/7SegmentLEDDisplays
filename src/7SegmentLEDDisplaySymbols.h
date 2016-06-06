@@ -9,7 +9,7 @@ public:
         int* Get(char* symbol);
 private:
         HashMap<char*, int*> Symbols;
-        int* getArray(int data[]);
+        /*int* getArray(int data[]);*/
 };
 
 #endif
