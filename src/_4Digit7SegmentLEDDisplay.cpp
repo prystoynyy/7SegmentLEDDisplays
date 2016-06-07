@@ -25,6 +25,26 @@ _4Digit7SegmentLEDDisplay::_4Digit7SegmentLEDDisplay(int digitPins[4], int segme
 
 void _4Digit7SegmentLEDDisplay::ShowText(char* symbols[4]){
         for(int i=0; i< CHAR_COUNT; i++) {
-          this->sympols[i] = this->LEDSymbol.Get(symbols[i]);
+                this->sympols[i] = this->LEDSymbol.Get(symbols[i]);
         }
+
+        for (int seg=0; seg<SEGMENT_PINS_COUNT; seg++) {
+                //Turn the relevant segment on
+                digitalWrite(SegmentPins[seg],SegOn);
+
+                //For each digit, turn relevant digits on
+                for (int digit=0; digit<DIGIT_PINS_COUNT; digit++) {
+                        if (this->sympols[digit][seg]==1) {
+                                digitalWrite(DigitPins[digit],DigitOn);
+                        }
+                        //delay(200); //Uncomment this to see it in slow motion
+                }
+                //Turn all digits off
+                for (int digit=0; digit<DIGIT_PINS_COUNT; digit++) {
+                        digitalWrite(DigitPins[digit],DigitOff);
+                }
+
+                //Turn the relevant segment off
+                digitalWrite(SegmentPins[seg],SegOff);
+        } //end of for
 }
